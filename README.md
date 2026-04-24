@@ -1,46 +1,85 @@
-Instagram Collaboration Checker (System-Spoiler Edition)
+# 📸 Instagram Collaboration Checker  
+### ⚡ System-Spoiler Edition
 
-A simple Python-based tool to scan public Instagram profiles and detect tagged collaborators from recent posts using Instagram’s web API.
+## 🧾 Overview
+The Instagram Collaboration Checker is a lightweight command-line Python tool designed to scan Instagram profiles and extract publicly available metadata.
 
-🚀 Features
-🔍 Scan any Instagram username
-📊 Displays:
-Account status (Public/Private)
-Total detected posts
-🤝 Extracts tagged users (used as collaboration indicators)
-🎨 Colorful CLI interface (with colorama)
-⚡ Fast and lightweight
-🛠️ Requirements
-Python 3.x
-Required libraries:
+It helps in:
+- Quick reconnaissance  
+- Social media analysis  
+- Detecting collaborations via tagged users  
+
+---
+
+## 🚀 Key Features
+- Profile Scanning: Fetches username, privacy status, and post count  
+- Collaboration Analysis: Analyzes the latest 5 posts to detect tagged users  
+- Adaptive UI: Uses `colorama` for styled output with fallback support  
+- Dual Mode Execution:
+  - CLI argument mode  
+  - Interactive input mode  
+- Error Handling:
+  - Handles 404 errors  
+  - API failures  
+  - Timeouts  
+  - Restricted/private accounts  
+
+---
+
+## 🛠️ Requirements
+- Python Version: 3.6+
+
+### Required Libraries
+```bash
 pip install requests colorama
+```
 
-⚠️ If colorama is not installed, the script will still work (without colors).
+> colorama is optional (used for colored output)
 
-📦 Installation
-git clone https://github.com/yourusername/instagram-collab-checker.git
+---
+
+## 📥 Installation
+```bash
+git clone https://github.com/dhruv09062003-lang/instagram-collab-checker.git
 cd instagram-collab-checker
 pip install -r requirements.txt
-▶️ Usage
-🔹 Run with username as argument:
-python3 checker.py username
+```
+
+---
+
+## ▶️ Usage Instructions
+
+### 1. Run with Username Argument
+```bash
+python3 insta.py <username>
+```
 
 Example:
+```bash
+python3 insta.py nasa
+```
 
-python3 checker.py instagram
-🔹 Interactive mode:
-python3 checker.py
+---
 
-Then enter usernames:
+### 2. Interactive Mode
+```bash
+python3 insta.py
+```
 
+Then input:
+```
 👤 Target Username: nasa
+```
 
-Type exit, quit, or q to close.
+Type `exit`, `quit`, or `q` to terminate the program.
 
-📊 Output Example
-📊 RESULTS FOR @USERNAME
+---
+
+## 📊 Output Example
+```
+📊 RESULTS FOR @NASA
 Status: 🔓 Public
-Posts:  10 detected
+Posts: 10 detected
 ─────────────────────────────
 
 📌 POST 1
@@ -50,3 +89,69 @@ Posts:  10 detected
 📌 POST 2
 🔗 https://instagram.com/p/YYYYY
 🤝 No tagged collaborators found.
+```
+
+---
+
+## ⚙️ Working Mechanism
+1. User Input & Sanitization  
+   - Accepts username via CLI or input  
+   - Removes '@' and extra spaces  
+
+2. Request Construction  
+   - Uses endpoint:
+     /api/v1/users/web_profile_info/  
+   - Adds headers (App ID, Referer, User-Agent)  
+
+3. JSON Parsing  
+   - Extracts post data from:
+     edge_owner_to_timeline_media  
+
+4. Collaboration Mapping  
+   - Checks:
+     edge_media_to_tagged_user  
+   - Tagged users are treated as collaborators  
+
+5. Output Generation  
+   - Displays profile info, post links, and collaborators  
+
+---
+
+## 🔧 Technical Implementation
+- Uses `requests` library  
+- Simulates browser headers (no login required)  
+- Lightweight alternative to Selenium and official APIs  
+
+---
+
+## ⚠️ Limitations
+- Works only on public accounts  
+- Instagram may change API endpoints or apply rate limits  
+- Collaboration detection is based on tagged users  
+
+---
+
+## 🔐 Cybersecurity Relevance
+- OSINT (Open Source Intelligence)  
+- Public data extraction  
+- Reconnaissance techniques  
+- API exposure awareness  
+
+---
+
+## 📌 Disclaimer
+This tool is for educational and ethical research purposes only.
+
+- Do not misuse  
+- Respect privacy and platform policies  
+- Excessive use may result in IP rate-limiting  
+
+---
+
+## 👨‍💻 Author
+System-Spoiler
+
+---
+
+## ⭐ Contributing
+Pull requests are welcome. Feel free to fork and improve the project.
